@@ -3,6 +3,7 @@ import { type UserUsecase } from '../usecase';
 import { CreateUserDto, GetUserByIdDto, UpdateUserByIdDto } from '../dtos';
 import { SuccessResponse } from '../types';
 import { UserEntityJson } from '../entities';
+import { HttpCode } from '../constants';
 
 export class UserController {
   // * Dependency Injection
@@ -16,9 +17,9 @@ export class UserController {
     this.usecase
       .getAll()
       .then((result) =>
-        res.json({
+        res.status(HttpCode.OK).json({
           status: 'success',
-          statusCode: 200,
+          statusCode: HttpCode.OK,
           message: 'Success retrieve user data',
           data: result.map((e) => e.toJson()),
         }),
@@ -37,9 +38,9 @@ export class UserController {
     this.usecase
       .getById(getUserByIdDto)
       .then((result) =>
-        res.json({
+        res.status(HttpCode.OK).json({
           status: 'success',
-          statusCode: 200,
+          statusCode: HttpCode.OK,
           message: 'Success retrieve user data',
           data: result.toJson(),
         }),
@@ -58,9 +59,9 @@ export class UserController {
     this.usecase
       .create(createUserDto)
       .then((result) =>
-        res.json({
+        res.status(HttpCode.CREATED).json({
           status: 'success',
-          statusCode: 200,
+          statusCode: HttpCode.CREATED,
           message: 'Success create user data',
           data: result.toJson(),
         }),
@@ -85,9 +86,9 @@ export class UserController {
     this.usecase
       .update(updateUserByIdDto)
       .then((result) =>
-        res.json({
+        res.status(HttpCode.OK).json({
           status: 'success',
-          statusCode: 200,
+          statusCode: HttpCode.OK,
           message: 'Success update user data',
           data: result.toJson(),
         }),
@@ -106,9 +107,9 @@ export class UserController {
     this.usecase
       .delete(getUserByIdDto)
       .then((result) =>
-        res.json({
+        res.status(HttpCode.OK).json({
           status: 'success',
-          statusCode: 200,
+          statusCode: HttpCode.OK,
           message: 'Success delete user data',
           data: result.toJson(),
         }),

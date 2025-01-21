@@ -22,7 +22,7 @@ export class ErrorMiddleware {
       });
     }
 
-    res.status(500).json({
+    res.status(HttpCode.INTERNAL_SERVER_ERROR).json({
       status: 'error',
       name: 'InternalServerError',
       statusCode: HttpCode.INTERNAL_SERVER_ERROR,
